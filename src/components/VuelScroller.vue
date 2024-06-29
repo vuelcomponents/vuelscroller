@@ -40,7 +40,7 @@ const props = defineProps<{
     queryNames?: { qty: string; offset: string };
   };
 }>();
-
+const isLoading = ref(false);
 const loadedItems = ref(props.renderOnly?.items ?? []);
 
 /* dom refs */
@@ -101,15 +101,21 @@ const onScroll = () => {
 
 };
 /* scroll handling */
-const scroll = (qty: number) => {
+const scroll = async (qty: number) => {
   if (!props.api?.requestUrl) {
     return (sliceCount.value += qty);
   }
-  getDataFromApi(qty).then(() => (sliceCount.value += qty));
+  if (isLoading.value) {
+    return;
+  }
+  isLoading.value = true;
+  await getDataFromApi(qty);
+  sliceCount.value += qty;
+  isLoading.value = false;
 };
 /* function reserved for api calls when api prop (api mode) has been chosen */
 const getDataFromApi = async (qty: number, offset?: number) => {
-  return getFromApi(
+  return await getFromApi(
       {
         api:props.api,
         loadedItems:loadedItems

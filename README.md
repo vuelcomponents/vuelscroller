@@ -5,7 +5,7 @@
 ### _API Request & Render_
 
 ```js
-<VirtualScroller
+<VuelScroller
     :api="{
       requestUrl: 'https://localhost:44336/api/get/',
       requestStrategy: 'slash', // 'slash' | 'query
@@ -20,20 +20,18 @@
 
 If you want to fetch objects from your API in addition to rendering, use the API object. You need to provide a `requestUrl`, for example: `https://yourpage.com/api/list/`. Depending on whether you choose 'slash' or 'query' strategy, your API requests will look like this: `https://yourpage.com/api/list/5/50` or `https://yourpage.com/api/list?qty=5&offset=50`. You can also override the query parameter names by setting `queryNames` in the API object.
 
-To automatically load objects on startup, use the `autoInit` option and specify the number of objects to load initially, for example, `10`. These will be the initial objects loaded automatically on startup.
-
 ### _Render-Only_
 
 If your focus is solely on rendering, you can omit the API options and directly pass a full list of objects to items in renderOnly parameter.
 
 
 ```js
-<VirtualScroller
+<VuelScroller
       :render-only="{
         items: test  
       }"
       :settings="{ 
-        loadStrategy: 'single', 
+        loadPerScroll: 2, 
         initialQty:10 
       }"
 />
@@ -42,7 +40,7 @@ If your focus is solely on rendering, you can omit the API options and directly 
 ### Props:
 
 - **renderOnly** (optional):
-    - **items**: An optional array of items to display within the component.
+    - **items**: An optional array of items to display within the component. Only if you want to render a static list of items ( Render-Only mode ).
 
 - **settings** (optional):
     - **loadPerScroll**: Specifies how items are loaded during scrolling. Can be `"single"` or a number indicating the quantity of items to load per scroll event.

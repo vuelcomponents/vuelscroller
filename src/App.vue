@@ -12,7 +12,7 @@ const testArrayRenderOnly = Array.from({ length: 5000 }, (_, i) => i + 1);
         requestUrl: 'https://localhost:44336/api/get/',
         requestStrategy: 'slash',
       }"
-      :settings="{ loadPerScroll: 5, initialQty:10 }"
+      :settings="{ loadPerScroll: 10, initialQty:10 }"
     >
       <template v-slot="{ item }">
         <div

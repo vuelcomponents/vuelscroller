@@ -21,7 +21,7 @@ export const getFromApi = async (
         );
         url.searchParams.append(
             data.api?.queryNames?.offset ?? "offset",
-            String(String(settings.offset ?? data.loadedItems.value.length)),
+            String(String(settings.offset ?? data.loadedItems.value.length +1)),
         );
     }
     // Check if the request strategy is set and append the path parameters if needed
@@ -30,6 +30,7 @@ export const getFromApi = async (
     }
 
     const response = await fetch(url.toString());
+    console.log('req', url.toString())
     if (!response.ok) {
         console.error("Network response was not ok");
         return null;

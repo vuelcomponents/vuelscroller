@@ -11,7 +11,7 @@ const testArrayRenderOnly = Array.from({ length: 5000 }, (_, i) => i + 1);
     :api="{
        requestUrl: 'https://localhost:44336/api/get/',
        requestStrategy: 'slash',
-       listLength:getListLenght(), // stops scrolling when the list is exhausted.
+       listLength:getListLength(), // stops scrolling when the list is exhausted.
           /* if your list updates on-the-fly, ignore this parameter */
      }"
       if you want to use the api prop,
@@ -20,9 +20,8 @@ const testArrayRenderOnly = Array.from({ length: 5000 }, (_, i) => i + 1);
                 ↓↓↓↓↓↓
      -->
     <VirtualScroller
-
       :renderOnly="{ items: testArrayRenderOnly }"
-      :settings="{ loadPerScroll: 2, initialQty:60 , maximumQty:100}"
+      :settings="{ loadPerScroll: 2, initialQty:60 }"
     >
       <template v-slot="{ item }">
         <div

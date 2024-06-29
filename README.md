@@ -10,7 +10,7 @@
       requestUrl: 'https://localhost:44336/api/get/',
       requestStrategy: 'slash', // 'slash' | 'query
       queryNames: { qty: 'my-qty', offset: 'my-offset' }, // if query strategy has been chosen
-      listLength:getListLenght(), // stops requesting when the list is exhausted.
+      listLength:getListLength(), // stops requesting when the list is exhausted.
     }"
     :settings="{
       loadPerScroll:1, // number (default = 1)

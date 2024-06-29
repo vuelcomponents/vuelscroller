@@ -119,8 +119,12 @@ const onScroll = () => {
 /* scroll handling */
 const scroll = async (qty: number) => {
   if (!props.api?.requestUrl) {
-     sliceCount.value += qty;
-     return resetScroll();
+    // prevent oversizing sliceCount in render mode
+    if(loadedItems.value.length < sliceCount.value){
+      return;
+    }
+    sliceCount.value += qty;
+    return resetScroll();
   }
   if (isLoading.value) {
     return;

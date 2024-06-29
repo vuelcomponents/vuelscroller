@@ -43,6 +43,7 @@ const props = defineProps<{
     requestUrl: string;
     requestStrategy?: "slash" | "query";
     queryNames?: { qty: string; offset: string };
+    listLength?: number;
   };
 }>();
 /* states */
@@ -122,6 +123,10 @@ const scroll = async (qty: number) => {
      return resetScroll();
   }
   if (isLoading.value) {
+    return;
+  }
+  // if listLength is provided and the loadedItems length is greater or equal to it, return
+  if(props.api?.listLength && loadedItems.value.length >= props.api?.listLength){
     return;
   }
   isLoading.value = true;

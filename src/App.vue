@@ -11,6 +11,8 @@ const testArrayRenderOnly = Array.from({ length: 5000 }, (_, i) => i + 1);
     :api="{
        requestUrl: 'https://localhost:44336/api/get/',
        requestStrategy: 'slash',
+       listLength:getListLenght(), // stops scrolling when the list is exhausted.
+          /* if your list updates on-the-fly, ignore this parameter */
      }"
       if you want to use the api prop,
       uncomment this line and the import statement at the top of the component
@@ -20,7 +22,7 @@ const testArrayRenderOnly = Array.from({ length: 5000 }, (_, i) => i + 1);
     <VirtualScroller
 
       :renderOnly="{ items: testArrayRenderOnly }"
-      :settings="{ loadPerScroll: 2, initialQty:60 }"
+      :settings="{ loadPerScroll: 2, initialQty:60 , maximumQty:100}"
     >
       <template v-slot="{ item }">
         <div

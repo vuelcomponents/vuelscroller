@@ -9,11 +9,12 @@
     :api="{
       requestUrl: 'https://localhost:44336/api/get/',
       requestStrategy: 'slash', // 'slash' | 'query
-      queryNames: { qty: 'my-qty', offset: 'my-offset' } // if query strategy has been chosen
+      queryNames: { qty: 'my-qty', offset: 'my-offset' }, // if query strategy has been chosen
+      listLength:getListLenght(), // stops requesting when the list is exhausted.
     }"
     :settings="{
       loadPerScroll:1, // number (default = 1)
-      initialQty:10 // initial objects qunatity to load
+      initialQty:10 // initial objects qunatity to load,
     }"
 >
     <template v-slot="{ item }">
@@ -66,3 +67,4 @@ If your focus is solely on rendering, you can omit the API options and directly 
     - **requestUrl**: The base URL for API requests.
     - **requestStrategy**: Specifies the strategy for API requests, either `"slash"` for URL path parameters or `"query"` for URL query parameters.
     - **queryNames**: Optional object specifying query parameter names for `"qty"` and `"offset"`.
+    - **listLength**: Stops requesting when the list is exhausted. If your list updates on-the-fly you may ignore 'listLength' parameter

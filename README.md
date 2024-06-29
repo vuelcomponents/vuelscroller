@@ -15,7 +15,15 @@
       loadPerScroll:1, // number (default = 1)
       initialQty:10 // initial objects qunatity to load
     }"
-/>
+>
+    <template v-slot="{ item }">
+      // Loaded item template
+    </template>
+  
+    <template #loading>
+      // place for your spinner - only for API MODE
+    </template>
+</VuelScroller>
 ```
 
 If you want to fetch objects from your API in addition to rendering, use the API object. You need to provide a `requestUrl`, for example: `https://yourpage.com/api/list/`. Depending on whether you choose 'slash' or 'query' strategy, your API requests will look like this: `https://yourpage.com/api/list/5/50` or `https://yourpage.com/api/list?qty=5&offset=50`. You can also override the query parameter names by setting `queryNames` in the API object.
@@ -34,7 +42,15 @@ If your focus is solely on rendering, you can omit the API options and directly 
         loadPerScroll: 2, 
         initialQty:10 
       }"
-/>
+>
+     <template v-slot="{ item }">
+       // Loaded item template
+     </template>
+  
+     <template #loading>
+       // place for your spinner - only for API Mode
+     </template>
+</VuelScroller>
 ```
 
 ### Props:
@@ -42,7 +58,7 @@ If your focus is solely on rendering, you can omit the API options and directly 
 - **renderOnly** (optional):
     - **items**: An optional array of items to display within the component. Only if you want to render a static list of items ( Render-Only mode ).
 
-- **settings** (optional):
+- **settings**:
     - **loadPerScroll**: Specifies how items are loaded during scrolling. Can be `"single"` or a number indicating the quantity of items to load per scroll event.
     - **initialQty**: Specifies the initial quantity of items to load.
 

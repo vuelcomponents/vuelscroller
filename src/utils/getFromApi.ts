@@ -30,7 +30,6 @@ export const getFromApi = async (
     }
 
     const response = await fetch(url.toString());
-    console.log('req', url.toString())
     if (!response.ok) {
         console.error("Network response was not ok");
         return null;

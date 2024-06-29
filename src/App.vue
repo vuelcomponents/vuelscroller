@@ -7,19 +7,27 @@ const testArrayRenderOnly = Array.from({ length: 5000 }, (_, i) => i + 1);
 
 <template>
   <div style="height: 700px; width: 300px">
+    <!--
+    :api="{
+       requestUrl: 'https://localhost:44336/api/get/',
+       requestStrategy: 'slash',
+     }"
+      if you want to use the api prop,
+      uncomment this line and the import statement at the top of the component
+      instead of the renderOnly prop
+                ↓↓↓↓↓↓
+     -->
     <VirtualScroller
-        :api="{
-        requestUrl: 'https://localhost:44336/api/get/',
-        requestStrategy: 'slash',
-      }"
-      :settings="{ loadPerScroll: 10, initialQty:10 }"
+
+      :renderOnly="{ items: testArrayRenderOnly }"
+      :settings="{ loadPerScroll: 2, initialQty:60 }"
     >
       <template v-slot="{ item }">
         <div
           style="
             background: darkblue;
             color: white;
-            height: 220px;
+            height: 20px;
             width: 200px;
             display: flex;
             justify-content: center;
